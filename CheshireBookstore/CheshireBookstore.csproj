@@ -4,12 +4,12 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <StartupObject>CheshireBookstore.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Infrastructure\Commands\" />
-    <Folder Include="Services\" />
     <Folder Include="Styles\" />
     <Folder Include="Templates\" />
   </ItemGroup>
