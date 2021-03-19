@@ -1,4 +1,5 @@
 ﻿using Bookstore.Lib.Context;
+using Bookstore.Lib.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +33,7 @@ namespace CheshireBookstore.Data
                 }
             })
             .AddTransient<DbInitializer>()
-            //.AddRepositoriesInDB()
+            .AddRepositoriesInDB()
             ;
     }
 }
