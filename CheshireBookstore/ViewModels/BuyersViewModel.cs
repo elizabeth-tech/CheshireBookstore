@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MathCore.ViewModels;
 
 namespace CheshireBookstore.ViewModels
 {
-    class BuyersViewModel
+    class BuyersViewModel : ViewModel
     {
+        private object buyersRepository;
+
+        public BuyersViewModel(object buyersRepository) => this.buyersRepository = buyersRepository;
     }
 }

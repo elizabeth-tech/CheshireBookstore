@@ -8,7 +8,17 @@
         DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}"
         
         Title="{Binding Title}" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <DockPanel>
+        <Menu IsMainMenu="True">
+            <MenuItem Header="Покупатели" Command="{Binding ShowBuyersViewCommand}"/>
+            <MenuItem Header="Книги" Command="{Binding ShowBooksViewCommand}"/>
+            <MenuItem Header="Статистика" Command="{Binding ShowStatisticViewCommand}"/>
+        </Menu>
+        <StatusBar>
+            <StatusBarItem>Готов</StatusBarItem>
+        </StatusBar>
+        <Grid>
+            <ContentControl Content="{Binding CurrentVM}"/>
+        </Grid>
+    </DockPanel>
 </Window>
