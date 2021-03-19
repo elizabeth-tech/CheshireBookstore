@@ -1,4 +1,5 @@
-﻿using CheshireBookstore.Services;
+﻿using CheshireBookstore.Data;
+using CheshireBookstore.Services;
 using CheshireBookstore.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,7 +20,7 @@ namespace CheshireBookstore
 
         // Регистрируем все ViewModel и сервисы
         internal static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
-            //.AddDatabase(host.Configuration.GetSection("Database"))
+            .AddDatabase(host.Configuration.GetSection("Database")) // Регистрируем БД и отправляем Database из конфигурационного файла
             .AddServices()
             .AddViewModels();
 
