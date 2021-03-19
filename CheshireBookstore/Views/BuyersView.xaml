@@ -7,7 +7,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Text="Покупатели" FontSize="25" FontWeight="Bold">
+                   Text="Покупатели" FontSize="22" FontWeight="Bold">
             <TextBlock.Effect>
                 <DropShadowEffect ShadowDepth="1"/>
             </TextBlock.Effect>

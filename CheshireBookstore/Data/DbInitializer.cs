@@ -26,9 +26,9 @@ namespace CheshireBookstore.Data
             var timer = Stopwatch.StartNew();
             logger.LogInformation("Инициализация БД...");
 
-            logger.LogInformation("Удаление существующей БД...");
-            await db.Database.EnsureDeletedAsync().ConfigureAwait(false);
-            logger.LogInformation("Удаление существующей БД выполнено за {0} мс", timer.ElapsedMilliseconds);
+            //logger.LogInformation("Удаление существующей БД...");
+            //await db.Database.EnsureDeletedAsync().ConfigureAwait(false);
+            //logger.LogInformation("Удаление существующей БД выполнено за {0} мс", timer.ElapsedMilliseconds);
 
             //_db.Database.EnsureCreated();
 

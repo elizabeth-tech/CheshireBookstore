@@ -3,6 +3,7 @@ using Bookstore.Lib.Entities;
 using MathCore.ViewModels;
 using MathCore.WPF.Commands;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -13,12 +14,17 @@ namespace CheshireBookstore.ViewModels
         private readonly IRepository<Book> booksRepository;
         private readonly IRepository<Buyer> buyersRepository;
         private readonly IRepository<Seller> sellersRepository;
+        private readonly IRepository<Deal> dealsRepository;
 
-        public StatisticViewModel(IRepository<Book> books, IRepository<Buyer> buyers, IRepository<Seller> sellers)
+        public StatisticViewModel(IRepository<Book> books,
+            IRepository<Buyer> buyers,
+            IRepository<Seller> sellers,
+            IRepository<Deal> deals)
         {
             booksRepository = books;
             buyersRepository = buyers;
             sellersRepository = sellers;
+            dealsRepository = deals;
         }
 
         #region Свойства
@@ -52,6 +58,13 @@ namespace CheshireBookstore.ViewModels
         private async Task OnComputeStatisticCommandExecuted()
         {
             BooksCount = await booksRepository.items.CountAsync();
+
+            var deals = dealsRepository.items;
+            var bestsellers = deals.GroupBy(deal => deal.Book)
+                .Select(book_deals => new { Book = book_deals.Key, Count = book_deals.Count() })
+                .OrderByDescending(book => book.Count)
+                .Take(5)
+                .ToArrayAsync();
         }
 
         #endregion

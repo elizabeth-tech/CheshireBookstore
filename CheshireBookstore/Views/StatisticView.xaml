@@ -17,7 +17,7 @@
     <Grid>
         <StackPanel>
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Text="Статистика" FontSize="25" FontWeight="Bold">
+                   Text="Статистика" FontSize="22" FontWeight="Bold">
                 <TextBlock.Effect>
                     <DropShadowEffect ShadowDepth="1"/>
                 </TextBlock.Effect>

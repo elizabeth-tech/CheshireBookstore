@@ -87,7 +87,8 @@ namespace CheshireBookstore.ViewModels
         private void OnShowStatisticViewCommandExecuted() => CurrentVM = new StatisticViewModel(
             booksRepository,
             buyersRepository,
-            sellersRepository);
+            sellersRepository,
+            dealsRepository);
 
         #endregion
 
