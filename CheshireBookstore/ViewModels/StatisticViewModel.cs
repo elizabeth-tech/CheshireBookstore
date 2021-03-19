@@ -1,8 +1,11 @@
 ﻿using Bookstore.Interfaces;
 using Bookstore.Lib.Entities;
+using CheshireBookstore.Models;
 using MathCore.ViewModels;
 using MathCore.WPF.Commands;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -28,6 +31,8 @@ namespace CheshireBookstore.ViewModels
         }
 
         #region Свойства
+
+        public ObservableCollection<BestsellersInfo> Bestsellers { get; } = new ObservableCollection<BestsellersInfo>();
 
         #region Количество книг
 
@@ -57,14 +62,36 @@ namespace CheshireBookstore.ViewModels
 
         private async Task OnComputeStatisticCommandExecuted()
         {
-            BooksCount = await booksRepository.items.CountAsync();
+            await ComputeDealsStatisticAsync();
 
-            var deals = dealsRepository.items;
-            var bestsellers = deals.GroupBy(deal => deal.Book)
-                .Select(book_deals => new { Book = book_deals.Key, Count = book_deals.Count() })
-                .OrderByDescending(book => book.Count)
-                .Take(5)
-                .ToArrayAsync();
+            //BooksCount = await booksRepository.items.CountAsync();
+        }
+
+        private async Task ComputeDealsStatisticAsync()
+        {
+            var bestsellers_query = dealsRepository.items
+               .GroupBy(b => b.Book.Id)
+               .Select(deals => new { BookId = deals.Key, Count = deals.Count(), Sum = deals.Sum(d => d.Price) })
+               .OrderByDescending(deals => deals.Count)
+               .Take(5)
+               .Join(booksRepository.items,
+                    deals => deals.BookId,
+                    book => book.Id,
+                    (deals, book) => new BestsellersInfo
+                    {
+                        Book = book,
+                        SellCount = deals.Count,
+                        SumCost = deals.Sum
+                    });
+
+            Bestsellers.Clear();
+            foreach (var bestseller in await bestsellers_query.ToArrayAsync())
+                Bestsellers.Add(bestseller);
+
+            //Bestsellers.AddClear(await bestsellers_query.ToArrayAsync());
+
+                //foreach (var bestseller in await bestsellers_query.ToArrayAsync())
+                //    Bestsellers.Add(bestseller);
         }
 
         #endregion
