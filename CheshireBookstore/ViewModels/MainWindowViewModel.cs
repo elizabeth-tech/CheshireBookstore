@@ -1,5 +1,6 @@
 ﻿using Bookstore.Interfaces;
 using Bookstore.Lib.Entities;
+using CheshireBookstore.Services.Interfaces;
 using MathCore.ViewModels;
 using System.Linq;
 
@@ -28,7 +29,11 @@ namespace CheshireBookstore.ViewModels
         #endregion
 
 
-        public MainWindowViewModel(IRepository<Book> booksRep)
+        public MainWindowViewModel(IRepository<Book> booksRep,
+            IRepository<Seller> sellers,
+            IRepository<Buyer> buyers,
+            IRepository<Deal> deals,
+            ISalesService salesService)
         {
             booksRepository = booksRep;
             //sellersRepository = sellers;
@@ -37,7 +42,7 @@ namespace CheshireBookstore.ViewModels
             //this.salesService = salesService;
 
             //this.booksRepository = booksRepository;
-            var _books = booksRepository.items.Take(10).ToArray();
+            //var _books = booksRepository.items.Take(10).ToArray();
 
             //var deals_count = salesService.Deals.Count();
             //var book = booksRepository.Get(5);
