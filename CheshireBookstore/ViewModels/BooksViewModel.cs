@@ -6,8 +6,8 @@ namespace CheshireBookstore.ViewModels
 {
     class BooksViewModel : ViewModel
     {
-        private IRepository<Book> booksRepository;
+        private readonly IRepository<Book> booksRepository;
 
-        public BooksViewModel(IRepository<Book> booksRepository) => this.booksRepository = booksRepository;
+        public BooksViewModel(IRepository<Book> books) => booksRepository = books;
     }
 }

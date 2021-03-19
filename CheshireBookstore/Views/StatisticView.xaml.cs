@@ -2,7 +2,7 @@
 
 namespace CheshireBookstore.Views
 {
-    public partial class StatisticView : Page
+    public partial class StatisticView : UserControl
     {
         public StatisticView() => InitializeComponent();
     }

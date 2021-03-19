@@ -53,11 +53,12 @@ namespace CheshireBookstore.ViewModels
 
         private ICommand showBooksViewCommand;
 
-        public ICommand ShowBooksViewCommand => showBooksViewCommand ??= new LambdaCommand(OnShowBooksViewCommandExecuted, CanShowBooksViewCommandExecute);
+        public ICommand ShowBooksViewCommand => showBooksViewCommand
+            ??= new LambdaCommand(OnShowBooksViewCommandExecuted, CanShowBooksViewCommandExecute);
 
-        private bool CanShowBooksViewCommandExecute(object p) => true;
+        private bool CanShowBooksViewCommandExecute() => true;
 
-        private void OnShowBooksViewCommandExecuted(object p) => CurrentVM = new BooksViewModel(booksRepository);
+        private void OnShowBooksViewCommandExecuted() => CurrentVM = new BooksViewModel(booksRepository);
 
         #endregion
 
@@ -65,11 +66,12 @@ namespace CheshireBookstore.ViewModels
 
         private ICommand showBuyersViewCommand;
 
-        public ICommand ShowBuyersViewCommand => showBuyersViewCommand ??= new LambdaCommand(OnShowBuyersViewCommandExecuted, CanShowBuyersViewCommandExecute);
+        public ICommand ShowBuyersViewCommand => showBuyersViewCommand
+            ??= new LambdaCommand(OnShowBuyersViewCommandExecuted, CanShowBuyersViewCommandExecute);
 
-        private bool CanShowBuyersViewCommandExecute(object p) => true;
+        private bool CanShowBuyersViewCommandExecute() => true;
 
-        private void OnShowBuyersViewCommandExecuted(object p) => CurrentVM = new BuyersViewModel(buyersRepository);
+        private void OnShowBuyersViewCommandExecuted() => CurrentVM = new BuyersViewModel(buyersRepository);
 
         #endregion
 
@@ -77,11 +79,12 @@ namespace CheshireBookstore.ViewModels
 
         private ICommand showStatisticViewCommand;
 
-        public ICommand ShowStatisticViewCommand => showStatisticViewCommand ??= new LambdaCommand(OnShowStatisticViewCommandExecuted, CanShowStatisticViewCommandExecute);
+        public ICommand ShowStatisticViewCommand => showStatisticViewCommand 
+            ??= new LambdaCommand(OnShowStatisticViewCommandExecuted, CanShowStatisticViewCommandExecute);
 
-        private bool CanShowStatisticViewCommandExecute(object p) => true;
+        private bool CanShowStatisticViewCommandExecute() => true;
 
-        private void OnShowStatisticViewCommandExecuted(object p) => CurrentVM = new StatisticViewModel(
+        private void OnShowStatisticViewCommandExecuted() => CurrentVM = new StatisticViewModel(
             booksRepository,
             buyersRepository,
             sellersRepository);
@@ -90,17 +93,17 @@ namespace CheshireBookstore.ViewModels
 
         #endregion
 
-        public MainWindowViewModel(IRepository<Book> booksRep,
+        public MainWindowViewModel(IRepository<Book> books,
             IRepository<Seller> sellers,
             IRepository<Buyer> buyers,
             IRepository<Deal> deals,
             ISalesService salesService)
         {
-            booksRepository = booksRep;
-            //sellersRepository = sellers;
-            //buyersRepository = buyers;
-            //dealsRepository = deals;
-            //this.salesService = salesService;
+            booksRepository = books;
+            sellersRepository = sellers;
+            buyersRepository = buyers;
+            dealsRepository = deals;
+            this.salesService = salesService;
 
             //this.booksRepository = booksRepository;
             //var _books = booksRepository.items.Take(10).ToArray();

@@ -1,14 +1,30 @@
-﻿<Page x:Class="CheshireBookstore.Views.StatisticView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:CheshireBookstore.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="StatisticView">
+﻿<UserControl x:Class="CheshireBookstore.Views.StatisticView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+             
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+              
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction Command="{Binding ComputeStatisticCommand}"/>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
 
     <Grid>
-        
+        <StackPanel>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="Статистика" FontSize="25" FontWeight="Bold">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="1"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBlock>
+                Число книг: <TextBlock Text="{Binding BooksCount}"/> штук
+            </TextBlock>
+        </StackPanel>
     </Grid>
-</Page>
+</UserControl>

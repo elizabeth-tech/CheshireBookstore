@@ -2,7 +2,7 @@
 
 namespace CheshireBookstore.Views
 {
-    public partial class BooksView : Page
+    public partial class BooksView : UserControl
     {
         public BooksView() => InitializeComponent();
     }
