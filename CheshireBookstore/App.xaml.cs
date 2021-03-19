@@ -28,8 +28,9 @@ namespace CheshireBookstore
         {
             var host = Host;
 
-            //using (var scope = Services.CreateScope())
-                //await scope.ServiceProvider.GetRequiredService<DbInitializer>().InitializeAsync();
+            // Вызываем инициализацию БД (заполнение тестовыми значениями)
+            using (var scope = Services.CreateScope())
+                await scope.ServiceProvider.GetRequiredService<DbInitializer>().InitializeAsync();
 
             base.OnStartup(e);
             await host.StartAsync();

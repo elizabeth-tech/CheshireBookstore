@@ -31,7 +31,7 @@ namespace CheshireBookstore.Data
                         break;
                 }
             })
-            //.AddTransient<DbInitializer>()
+            .AddTransient<DbInitializer>()
             //.AddRepositoriesInDB()
             ;
     }
