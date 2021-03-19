@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CheshireBookstore.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CheshireBookstore.Services
 {
@@ -6,7 +7,7 @@ namespace CheshireBookstore.Services
     {
         // Метод регистрации любых сервисов
         public static IServiceCollection AddServices(this IServiceCollection services) => services
-            //.AddTransient<ISalesService, SalesService>()
+            .AddTransient<ISalesService, SalesService>()
             ;
     }
 }
