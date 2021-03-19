@@ -37,7 +37,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Книга" Width="*" Binding="{Binding Book.Name}"/>
                         <DataGridTextColumn Header="Количество продаж" Binding="{Binding SellCount}"/>
-                        <!--<DataGridTextColumn Header="Полная стоимость" Binding="{Binding SumCost}"/>-->
+                        <DataGridTextColumn Header="Полная стоимость" Binding="{Binding SumCost}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </GroupBox>

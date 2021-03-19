@@ -84,14 +84,11 @@ namespace CheshireBookstore.ViewModels
                         SumCost = deals.Sum
                     });
 
-            Bestsellers.Clear();
-            foreach (var bestseller in await bestsellers_query.ToArrayAsync())
-                Bestsellers.Add(bestseller);
+            //Bestsellers.Clear();
+            //foreach (var bestseller in await bestsellers_query.ToArrayAsync())
+                //Bestsellers.Add(bestseller);
 
-            //Bestsellers.AddClear(await bestsellers_query.ToArrayAsync());
-
-                //foreach (var bestseller in await bestsellers_query.ToArrayAsync())
-                //    Bestsellers.Add(bestseller);
+            Bestsellers.AddClear(await bestsellers_query.ToArrayAsync());
         }
 
         #endregion
