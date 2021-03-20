@@ -70,7 +70,7 @@ namespace CheshireBookstore.ViewModels
         {
             if (!(e.Item is Book book) || string.IsNullOrEmpty(BooksFilter)) return; // Если это не книга или фильтр не задан, то ничего не делаем
 
-            if (book.Name.Contains(BooksFilter))
+            if (!book.Name.Contains(BooksFilter))
                 e.Accepted = false;
         }
     }
