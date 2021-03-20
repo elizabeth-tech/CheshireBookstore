@@ -55,7 +55,10 @@ namespace Bookstore.Lib.Repositories
         // Удаление сущности
         public void Remove(int id)
         {
-            db.Remove(new T { Id = id });
+            // Каждая таблица - объект DbSet со свойством Local. Возвращаем из кэша сущность, либо создаем ее
+            var item = set.Local.FirstOrDefault(i => i.Id == id) ?? new T { Id = id };
+
+            db.Remove(item);
             if (AutoSaveChanges)
                 db.SaveChanges();
         }

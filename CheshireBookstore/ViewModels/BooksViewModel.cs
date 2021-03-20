@@ -127,6 +127,16 @@ namespace CheshireBookstore.ViewModels
         private void OnRemoveBookCommandExecuted(Book p)
         {
             var book_to_remove = p ?? SelectedBook;
+
+            if (!userDialog.ConfirmWarning($"Вы хотите удалить книгу {book_to_remove.Name}?", "Удаление книги"))
+                return;
+
+            booksRepository.Remove(book_to_remove.Id);
+            booksCollection.Remove(book_to_remove);
+
+            // Если книга выбрана, то сбрасываем выбор
+            if (ReferenceEquals(SelectedBook, book_to_remove))
+                SelectedBook = null;
         }
 
         #endregion

@@ -2,6 +2,7 @@
 using CheshireBookstore.Services.Interfaces;
 using CheshireBookstore.ViewModels;
 using CheshireBookstore.Views.Windows;
+using System.Windows;
 
 namespace CheshireBookstore.Services
 {
@@ -22,5 +23,26 @@ namespace CheshireBookstore.Services
 
             return true;
         }
+
+        public bool ConfirmInformation(string Information, string Caption) => MessageBox
+            .Show(
+                Information,
+                Caption,
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Information) == MessageBoxResult.Yes;
+
+        public bool ConfirmWarning(string Information, string Caption) => MessageBox
+            .Show(
+                Information,
+                Caption,
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning) == MessageBoxResult.Yes;
+
+        public bool ConfirmError(string Information, string Caption) => MessageBox
+            .Show(
+                Information,
+                Caption,
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Error) == MessageBoxResult.Yes;
     }
 }
