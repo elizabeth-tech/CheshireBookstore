@@ -20,7 +20,7 @@ namespace CheshireBookstore.Infrastructure.Commands
 
             // Позволяем dialog_result передавать команде в виде параметра
             if (parameter != null)
-                dialog_result = (bool?)Convert.ChangeType(parameter, typeof(bool?));
+                dialog_result = Convert.ToBoolean(parameter);
 
             window.DialogResult = dialog_result;
             window.Close();

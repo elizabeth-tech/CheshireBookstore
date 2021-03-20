@@ -110,6 +110,7 @@ namespace CheshireBookstore.ViewModels
             var new_book = new Book();
             if (!userDialog.Edit(new_book)) return;
             BooksCollection.Add(booksRepository.Add(new_book));
+            SelectedBook = new_book;
         }
 
         #endregion
