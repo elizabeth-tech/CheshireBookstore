@@ -4,12 +4,26 @@ using CheshireBookstore.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Linq;
 using System.Windows;
 
 namespace CheshireBookstore
 {
     public partial class App : Application
     {
+        // Определяем текущее активное окно. Т.е. это окно, у которого статус IsActive
+        public static Window ActiveWindow => Application.Current.Windows
+            .OfType<Window>()
+            .FirstOrDefault(w => w.IsActive);
+
+        // Определяем окно с фокусом
+        public static Window FocusedWindow => Application.Current.Windows
+            .OfType<Window>()
+            .FirstOrDefault(w => w.IsFocused);
+
+        // Текущее окно - окно, которое либо в фокусе, либо активное
+        public static Window CurrentWindow => FocusedWindow ?? ActiveWindow;
+
         public static bool IsDesignTime { get; private set; } = true; // Флаг, который показывает, используется ли модель-представление из-под конструктора студии
 
         private static IHost _host;
