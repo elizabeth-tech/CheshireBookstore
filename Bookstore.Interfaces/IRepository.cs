@@ -7,7 +7,7 @@ namespace Bookstore.Interfaces
     // Накладываем ограничения. Тип T должен быть классом, разделять интерфейс сущности и должен иметь конструктор по умолчанию без параметров
     public interface IRepository<T> where T : class, IEntity, new()
     {
-        IQueryable<T> items { get; }
+        IQueryable<T> Items { get; }
 
         T Get(int id);
         Task<T> GetAsync(int id, CancellationToken cancel = default);

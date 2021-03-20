@@ -69,12 +69,12 @@ namespace CheshireBookstore.ViewModels
 
         private async Task ComputeDealsStatisticAsync()
         {
-            var bestsellers_query = dealsRepository.items
+            var bestsellers_query = dealsRepository.Items
                .GroupBy(b => b.Book.Id)
                .Select(deals => new { BookId = deals.Key, Count = deals.Count(), Sum = deals.Sum(d => d.Price) })
                .OrderByDescending(deals => deals.Count)
                .Take(5)
-               .Join(booksRepository.items,
+               .Join(booksRepository.Items,
                     deals => deals.BookId,
                     book => book.Id,
                     (deals, book) => new BestsellersInfo

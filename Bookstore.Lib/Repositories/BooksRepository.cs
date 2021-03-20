@@ -10,6 +10,6 @@ namespace Bookstore.Lib.Repositories
         public BooksRepository(BookstoreDbContext db) : base(db) { }
 
         // Переопределяем свойство items. Т.е. при загрузке книг, мы еще хотим включать информацию о категориях
-        public override IQueryable<Book> items => base.items.Include(item => item.Category);
+        public override IQueryable<Book> Items => base.Items.Include(item => item.Category);
     }
 }

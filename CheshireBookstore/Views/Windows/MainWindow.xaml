@@ -12,7 +12,7 @@
     
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
-            <b:InvokeCommandAction Command="{Binding ShowBooksViewCommand}"/>
+            <b:InvokeCommandAction Command="{Binding ShowBuyersViewCommand}"/>
         </b:EventTrigger>
     </b:Interaction.Triggers>
     

@@ -10,7 +10,7 @@ namespace Bookstore.Lib.Repositories
         public DealsRepository(BookstoreDbContext db) : base(db) { }
         
         // Переопределяем свойство items. Т.е. при загрузке сделок, мы еще хотим включать информацию о книгах, продавцах и покупателях
-        public override IQueryable<Deal> items => base.items
+        public override IQueryable<Deal> Items => base.Items
             .Include(item => item.Book)
             .Include(item => item.Seller)
             .Include(item => item.Buyer)

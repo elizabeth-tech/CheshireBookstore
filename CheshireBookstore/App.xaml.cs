@@ -10,6 +10,8 @@ namespace CheshireBookstore
 {
     public partial class App : Application
     {
+        public static bool IsDesignTime { get; private set; } = true;
+
         private static IHost _host;
 
         // Запуск хоста при старте приложения (будет создаваться только один хост, благодаря singleton)
@@ -26,6 +28,8 @@ namespace CheshireBookstore
 
         protected override async void OnStartup(StartupEventArgs e)
         {
+            IsDesignTime = false;
+
             var host = Host;
 
             // Вызываем инициализацию БД (заполнение тестовыми значениями)

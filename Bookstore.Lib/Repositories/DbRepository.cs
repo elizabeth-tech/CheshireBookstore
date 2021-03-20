@@ -24,7 +24,7 @@ namespace Bookstore.Lib.Repositories
             this.set = db.Set<T>();
         }
 
-        public virtual IQueryable<T> items => set; // Можем переопределить в наследниках нюансы чтения\добавления сущностей
+        public virtual IQueryable<T> Items => set; // Можем переопределить в наследниках нюансы чтения\добавления сущностей
 
         // Добавление в бд
         public T Add(T item)
@@ -46,9 +46,9 @@ namespace Bookstore.Lib.Repositories
         }
 
         // Извлечение одной сущности
-        public T Get(int id) => items.SingleOrDefault(item => item.Id == id);
+        public T Get(int id) => Items.SingleOrDefault(item => item.Id == id);
 
-        public async Task<T> GetAsync(int id, CancellationToken cancel = default) => await items
+        public async Task<T> GetAsync(int id, CancellationToken cancel = default) => await Items
             .SingleOrDefaultAsync(item => item.Id == id, cancel)
             .ConfigureAwait(false);
 
