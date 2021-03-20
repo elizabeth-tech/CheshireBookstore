@@ -42,6 +42,10 @@
             </GroupBox.Resources> -->
             <DockPanel>
                 <TextBox DockPanel.Dock="Top" Text="{Binding BooksFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="3">
+                    <Button Content="Add" Margin="3"/>
+                    <Button Content="Remove" Margin="3"/>
+                </UniformGrid>
                 <ListBox MinWidth="140" ItemsSource="{Binding BooksView}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
