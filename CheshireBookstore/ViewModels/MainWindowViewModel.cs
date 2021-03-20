@@ -12,6 +12,7 @@ namespace CheshireBookstore.ViewModels
     {
         #region Свойства
 
+        private readonly IUserDialog userDialog;
         private readonly IRepository<Book> booksRepository;
         private readonly IRepository<Buyer> buyersRepository;
         private readonly IRepository<Seller> sellersRepository;
@@ -58,7 +59,7 @@ namespace CheshireBookstore.ViewModels
 
         private bool CanShowBooksViewCommandExecute() => true;
 
-        private void OnShowBooksViewCommandExecuted() => CurrentVM = new BooksViewModel(booksRepository);
+        private void OnShowBooksViewCommandExecuted() => CurrentVM = new BooksViewModel(booksRepository, userDialog);
 
         #endregion
 
@@ -94,12 +95,15 @@ namespace CheshireBookstore.ViewModels
 
         #endregion
 
-        public MainWindowViewModel(IRepository<Book> books,
+        public MainWindowViewModel(
+            IUserDialog userDialog,
+            IRepository<Book> books,
             IRepository<Seller> sellers,
             IRepository<Buyer> buyers,
             IRepository<Deal> deals,
             ISalesService salesService)
         {
+            this.userDialog = userDialog;
             booksRepository = books;
             sellersRepository = sellers;
             buyersRepository = buyers;

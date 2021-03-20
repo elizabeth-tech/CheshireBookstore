@@ -8,9 +8,9 @@ namespace CheshireBookstore.Services
 {
     internal class UserDialogService : IUserDialog
     {
-        public void Edit(Book book)
+        public bool Edit(Book book)
         {
-
+            return false;
         }
     }
 }

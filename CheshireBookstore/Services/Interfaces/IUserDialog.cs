@@ -4,6 +4,6 @@ namespace CheshireBookstore.Services.Interfaces
 {
     internal interface IUserDialog
     {
-        void Edit(Book book);
+        bool Edit(Book book);
     }
 }

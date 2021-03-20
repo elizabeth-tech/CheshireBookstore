@@ -1,6 +1,7 @@
 ﻿using Bookstore.Interfaces;
 using Bookstore.Lib.Entities;
 using CheshireBookstore.Infrastructure.DebugServices;
+using CheshireBookstore.Services.Interfaces;
 using MathCore.ViewModels;
 using MathCore.WPF.Commands;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ namespace CheshireBookstore.ViewModels
         #region Свойства
 
         private readonly IRepository<Book> booksRepository;
-
+        private readonly IUserDialog userDialog;
         private CollectionViewSource booksViewSource;
 
         //public IEnumerable<Book> Books => booksRepository.Items;
@@ -108,7 +109,8 @@ namespace CheshireBookstore.ViewModels
         private void OnAddNewBookCommandExecuted()
         {
             var new_book = new Book();
-
+            if (!userDialog.Edit(new_book)) return;
+            BooksCollection.Add(booksRepository.Add(new_book));
         }
 
         #endregion
@@ -133,9 +135,10 @@ namespace CheshireBookstore.ViewModels
 
         #region Конструкторы
 
-        public BooksViewModel(IRepository<Book> books)
+        public BooksViewModel(IRepository<Book> books, IUserDialog userDialog)
         {
             booksRepository = books;
+            this.userDialog = userDialog;
 
             booksViewSource = new CollectionViewSource
             {
