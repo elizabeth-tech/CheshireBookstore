@@ -1,15 +1,14 @@
 ﻿using Bookstore.Interfaces;
 using Bookstore.Lib.Entities;
 using CheshireBookstore.Infrastructure.DebugServices;
+using CheshireBookstore.Services;
 using CheshireBookstore.Services.Interfaces;
 using MathCore.ViewModels;
 using MathCore.WPF.Commands;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -152,7 +151,7 @@ namespace CheshireBookstore.ViewModels
         }
 
         public BooksViewModel()
-            :this(new DebugBooksRepository()) // отладочный репозиторий
+            :this(new DebugBooksRepository(), new UserDialogService()) // отладочный репозиторий
         {
             if (!App.IsDesignTime)
                 throw new InvalidOperationException("Используется конструктор для тестирования");
