@@ -43,10 +43,13 @@
             <DockPanel>
                 <TextBox DockPanel.Dock="Top" Text="{Binding BooksFilter, UpdateSourceTrigger=PropertyChanged}"/>
                 <UniformGrid DockPanel.Dock="Bottom" Rows="1" Margin="3">
-                    <Button Content="Add" Margin="3"/>
-                    <Button Content="Remove" Margin="3"/>
+                    <Button Content="Add" Margin="3" Command="{Binding AddNewBookCommand}"/>
+                    <Button Content="Remove" Margin="3" 
+                            Command="{Binding RemoveBookCommand}"
+                            CommandParameter="{Binding SelectedBook}"/>
                 </UniformGrid>
-                <ListBox MinWidth="140" ItemsSource="{Binding BooksView}">
+                <ListBox MinWidth="140" ItemsSource="{Binding BooksView}"
+                         SelectedItem="{Binding SelectedBook}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}" ToolTip="{Binding Category.Name}"/>

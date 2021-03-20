@@ -45,6 +45,20 @@ namespace CheshireBookstore.ViewModels
 
         #endregion
 
+        #region Выбранная книга в списке
+
+        /// <summary>Выбранная книга</summary>
+        private Book selectedBook;
+
+        /// <summary>Выбранная книга</summary>
+        public Book SelectedBook
+        {
+            get => selectedBook;
+            set => Set(ref selectedBook, value);
+        }
+
+        #endregion
+
         #region Коллекция книг
 
         private ObservableCollection<Book> booksCollection;
@@ -79,6 +93,39 @@ namespace CheshireBookstore.ViewModels
         private bool CanLoadDataCommandExecute() => true;
 
         private async Task OnLoadDataCommandExecuted() => BooksCollection = new ObservableCollection<Book>(await booksRepository.Items.ToArrayAsync());
+
+        #endregion
+
+        #region Добавить новую книгу
+
+        private ICommand addNewBookCommand;
+
+        public ICommand AddNewBookCommand => addNewBookCommand
+            ??= new LambdaCommand(OnAddNewBookCommandExecuted, CanAddNewBookCommandExecute);
+
+        private bool CanAddNewBookCommandExecute() => true;
+
+        private void OnAddNewBookCommandExecuted()
+        {
+            var new_book = new Book();
+
+        }
+
+        #endregion
+
+        #region Удалить выбранную книгу
+
+        private ICommand removeBookCommand;
+
+        public ICommand RemoveBookCommand => removeBookCommand
+            ??= new LambdaCommand<Book>(OnRemoveBookCommandExecuted, CanRemoveBookCommandExecute);
+
+        private bool CanRemoveBookCommandExecute(Book p) => p != null || SelectedBook != null;
+
+        private void OnRemoveBookCommandExecuted(Book p)
+        {
+            var book_to_remove = p ?? SelectedBook;
+        }
 
         #endregion
 
