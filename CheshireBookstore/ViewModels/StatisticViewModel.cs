@@ -56,9 +56,7 @@ namespace CheshireBookstore.ViewModels
 
         private ICommand computeStatisticCommand;
 
-        public ICommand ComputeStatisticCommand => computeStatisticCommand ??= new LambdaCommandAsync(OnComputeStatisticCommandExecuted, CanComputeStatisticCommandExecute);
-
-        private bool CanComputeStatisticCommandExecute() => true;
+        public ICommand ComputeStatisticCommand => computeStatisticCommand ??= new LambdaCommandAsync(OnComputeStatisticCommandExecuted);
 
         private async Task OnComputeStatisticCommandExecuted()
         {
@@ -88,6 +86,7 @@ namespace CheshireBookstore.ViewModels
             //foreach (var bestseller in await bestsellers_query.ToArrayAsync())
                 //Bestsellers.Add(bestseller);
 
+            // Выполняем linq запрос
             Bestsellers.AddClear(await bestsellers_query.ToArrayAsync());
         }
 

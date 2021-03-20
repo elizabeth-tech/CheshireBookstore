@@ -10,7 +10,7 @@ namespace CheshireBookstore
 {
     public partial class App : Application
     {
-        public static bool IsDesignTime { get; private set; } = true;
+        public static bool IsDesignTime { get; private set; } = true; // Флаг, который показывает, используется ли модель-представление из-под конструктора студии
 
         private static IHost _host;
 
