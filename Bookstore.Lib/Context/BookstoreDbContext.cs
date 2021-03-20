@@ -18,5 +18,14 @@ namespace Bookstore.Lib.Context
         public DbSet<Buyer> Buyers { get; set; }
 
         public DbSet<Seller> Sellers { get; set; }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //    modelBuilder.Entity<Deal>()
+        //   .HasOne(p => p.Book)
+        //   .WithMany(t => t.Category)
+        //   .OnDelete(DeleteBehavior.Cascade);
+        //}
     }
 }
